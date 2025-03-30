@@ -35,4 +35,12 @@ The algorithms are organized into different folders based on their category.
 #### Folder 5 (Backtracking)
 - 0/1 Knapsack (Backtracking)  
 - N-Queens Problem  
+
+#### Folder 6 (String Matching)
+- Rabin Karp
+- Knuth Morris Pratt (KMP)
+
+#### Folder 7 (Shortest Path)
+- Dijkstra
+- Floyd Warshall
  
