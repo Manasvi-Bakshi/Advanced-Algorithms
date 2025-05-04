@@ -1,0 +1,33 @@
+Function addEdge(adj[], u, v, wt):
+    Add edge u-v with weight wt to adj[u]
+    Add edge v-u with weight wt to adj[v]
+
+Function dijkstra(adj[], V, src):
+    Initialize a priority queue pq to store pairs (distance, vertex)
+    Initialize a vector dist[] with size V, and set all values to infinity (INT_MAX)
+    
+    Set dist[src] = 0  // Distance to the source is 0
+    Push (0, src) into pq
+
+    While pq is not empty:
+        u = top element of pq (vertex with smallest distance)
+        Pop pq
+
+        For each adjacent vertex v and weight of the edge u-v:
+            If dist[v] > dist[u] + weight:
+                Update dist[v] = dist[u] + weight
+                Push (dist[v], v) into pq
+
+    Print the distance of each vertex from the source:
+        For each vertex i from 0 to V-1:
+            Print the distance dist[i]
+
+Main:
+    Set the number of vertices V (e.g., V = 9)
+    Initialize adjacency list adj[V]
+
+    Define a list of edges with (u, v, wt) tuples
+    For each edge in edges:
+        Call addEdge() to add the edge to the adjacency list adj[]
+
+    Call dijkstra() with the source vertex 0 to calculate and print the shortest paths

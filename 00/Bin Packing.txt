@@ -1,0 +1,72 @@
+Function binPacking(w[], n, c):
+
+    Function NextFit():
+        bins ← 0
+        rem ← c
+        For i from 0 to n - 1:
+            If w[i] > rem:
+                bins ← bins + 1
+                rem ← c - w[i]
+            Else:
+                rem ← rem - w[i]
+        Return bins
+
+    Function FirstFit(weights[]):
+        bins ← 0
+        rem[] ← empty list
+        For i from 0 to n - 1:
+            placed ← false
+            For j from 0 to bins - 1:
+                If rem[j] ≥ weights[i]:
+                    rem[j] ← rem[j] - weights[i]
+                    placed ← true
+                    Break
+            If not placed:
+                rem[bins] ← c - weights[i]
+                bins ← bins + 1
+        Return bins
+
+    Function BestFit():
+        bins ← 0
+        rem[] ← empty list
+        For i from 0 to n - 1:
+            min_space ← c + 1
+            best_bin ← -1
+            For j from 0 to bins - 1:
+                If rem[j] ≥ w[i] AND rem[j] - w[i] < min_space:
+                    min_space ← rem[j] - w[i]
+                    best_bin ← j
+            If best_bin == -1:
+                rem[bins] ← c - w[i]
+                bins ← bins + 1
+            Else:
+                rem[best_bin] ← rem[best_bin] - w[i]
+        Return bins
+
+    Function WorstFit():
+        bins ← 0
+        rem[] ← empty list
+        For i from 0 to n - 1:
+            max_space ← -1
+            worst_bin ← -1
+            For j from 0 to bins - 1:
+                If rem[j] ≥ w[i] AND rem[j] - w[i] > max_space:
+                    max_space ← rem[j] - w[i]
+                    worst_bin ← j
+            If worst_bin == -1:
+                rem[bins] ← c - w[i]
+                bins ← bins + 1
+            Else:
+                rem[worst_bin] ← rem[worst_bin] - w[i]
+        Return bins
+
+    Function FirstFitDecreasing():
+        sorted_weights ← w[] sorted in descending order
+        Return FirstFit(sorted_weights)
+
+    // Call and Print All Strategies
+    Print "Next Fit Bins: ", NextFit()
+    Print "First Fit Bins: ", FirstFit(w)
+    Print "Best Fit Bins: ", BestFit()
+    Print "Worst Fit Bins: ", WorstFit()
+    Print "First Fit Decreasing Bins: ", FirstFitDecreasing()

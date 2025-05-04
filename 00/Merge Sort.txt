@@ -1,0 +1,68 @@
+Function merge(array, left, mid, right):
+    n1 ← mid - left + 1
+    n2 ← right - mid
+
+    Create array leftArray of size n1
+    Create array rightArray of size n2
+
+    For i from 0 to n1 - 1:
+        leftArray[i] ← array[left + i]
+    EndFor
+
+    For j from 0 to n2 - 1:
+        rightArray[j] ← array[mid + 1 + j]
+    EndFor
+
+    i ← 0, j ← 0, k ← left
+
+    While i < n1 AND j < n2:
+        If leftArray[i] ≤ rightArray[j]:
+            array[k] ← leftArray[i]
+            i ← i + 1
+        Else:
+            array[k] ← rightArray[j]
+            j ← j + 1
+        EndIf
+        k ← k + 1
+    EndWhile
+
+    While i < n1:
+        array[k] ← leftArray[i]
+        i ← i + 1
+        k ← k + 1
+    EndWhile
+
+    While j < n2:
+        array[k] ← rightArray[j]
+        j ← j + 1
+        k ← k + 1
+    EndWhile
+EndFunction
+
+Function mergeSort(array, left, right):
+    If left < right:
+        mid ← left + (right - left) / 2
+
+        mergeSort(array, left, mid)
+        mergeSort(array, mid + 1, right)
+
+        merge(array, left, mid, right)
+    EndIf
+EndFunction
+
+Function print(array, num):
+    For i from 0 to num - 1:
+        Print array[i] followed by space
+    EndFor
+    Print newline
+EndFunction
+
+Main:
+    array ← [8, 4, 5, 2, 9, 1]
+    num ← number of elements in array
+
+    mergeSort(array, 0, num - 1)
+    print(array, num)
+
+    Return 0
+EndMain

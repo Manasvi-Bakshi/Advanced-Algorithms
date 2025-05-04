@@ -1,0 +1,34 @@
+Function solve(row, cols[], leftDiag[], rightDiag[], result[]):
+    If row == n:
+        Return true
+
+    For col from 0 to n-1:
+        If cols[col] or rightDiag[row + col] or leftDiag[row - col + n - 1] is set:
+            Continue  // Skip if the position is under attack
+
+        Set cols[col], rightDiag[row + col], and leftDiag[row - col + n - 1] to 1
+        Append (col + 1) to result
+
+        If solve(row + 1, cols, leftDiag, rightDiag, result) is true:
+            Return true
+
+        Remove (col + 1) from result
+        Set cols[col], rightDiag[row + col], and leftDiag[row - col + n - 1] back to 0
+
+    Return false
+
+Function nQueen(n):
+    Initialize cols[], leftDiag[], rightDiag[] with size n and set all to 0
+    Initialize result[] as an empty list
+
+    If solve(0, cols, leftDiag, rightDiag, result) is true:
+        Return result
+    Else:
+        Return [-1]  // Return -1 if no solution exists
+
+Main:
+    Set n to desired value (e.g., n = 4)
+    Call nQueen(n) and store the result in ans
+
+    For each position in ans:
+        Print the position

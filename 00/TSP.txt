@@ -1,0 +1,39 @@
+Function tspUtil(mask, curr, n, costMatrix, dp):
+    If all cities visited (mask == (1 << n) - 1):
+        Return costMatrix[curr][0]  // Return to starting city (0)
+
+    If dp[curr][mask] ≠ -1:
+        Return dp[curr][mask]
+
+    ans ← ∞
+    For i from 0 to n - 1:
+        If city i is not visited (mask & (1 << i)) == 0:
+            newCost ← costMatrix[curr][i] + tspUtil(mask | (1 << i), i, n, costMatrix, dp)
+            ans ← min(ans, newCost)
+        EndIf
+    EndFor
+
+    dp[curr][mask] ← ans
+    Return ans
+EndFunction
+
+Function tsp(costMatrix):
+    n ← 4  // Number of cities (can be generalized)
+    Create dp as 2D array of size n × (2^n), initialized to -1
+
+    Return tspUtil(1, 0, n, costMatrix, dp)  // Start from city 0 with mask 0001
+EndFunction
+
+Main:
+    costMatrix ← [
+        [0, 10, 15, 20],
+        [10, 0, 35, 25],
+        [15, 35, 0, 30],
+        [20, 25, 30, 0]
+    ]
+
+    result ← tsp(costMatrix)
+    Print result
+
+    Return 0
+EndMain

@@ -1,0 +1,17 @@
+Function floydWarshall(graph):
+    Let V be the number of vertices in the graph (size of graph)
+    
+    For each vertex k from 0 to V-1:
+        For each vertex i from 0 to V-1:
+            For each vertex j from 0 to V-1:
+                If there is a path i -> k and k -> j:
+                    If there is no direct path i -> j or a shorter path through k is found:
+                        Update graph[i][j] = graph[i][k] + graph[k][j]
+
+Main:
+    Initialize a graph with size V x V where each cell graph[i][j] represents the weight of the edge from vertex i to vertex j.
+    If no direct path exists, use -1 to represent that the edge does not exist.
+
+    Call floydWarshall(graph) to update the graph with shortest paths between all pairs of vertices.
+
+    Print the final shortest path matrix after applying the Floyd-Warshall algorithm.

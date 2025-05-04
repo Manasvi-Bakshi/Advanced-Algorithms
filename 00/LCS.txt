@@ -1,0 +1,31 @@
+Function longestCommonSubseq(a, b, m, n, dp):
+    If m == 0 OR n == 0:
+        Return 0
+
+    If dp[m][n] ≠ -1:
+        Return dp[m][n]
+
+    If a[m - 1] == b[n - 1]:
+        dp[m][n] ← 1 + longestCommonSubseq(a, b, m - 1, n - 1, dp)
+    Else:
+        dp[m][n] ← max(
+            longestCommonSubseq(a, b, m, n - 1, dp),
+            longestCommonSubseq(a, b, m - 1, n, dp)
+        )
+    
+    Return dp[m][n]
+EndFunction
+
+Main:
+    a ← "AGGTAB"
+    b ← "GXTXAYB"
+    m ← length of a
+    n ← length of b
+
+    Create 2D array dp of size (m+1) × (n+1), initialized to -1
+
+    result ← longestCommonSubseq(a, b, m, n, dp)
+    Print result
+
+    Return 0
+EndMain

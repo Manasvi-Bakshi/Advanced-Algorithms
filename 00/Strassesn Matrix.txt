@@ -1,0 +1,45 @@
+Function add(A, B, n):
+    Create result matrix res of size n x n
+    For each element (i, j):
+        res[i][j] = A[i][j] + B[i][j]
+    Return res
+
+Function mult(A, B):
+    Let n = size of matrix A (assuming square matrices)
+    Initialize result matrix res of size n x n with all elements as 0
+    
+    If n == 1:
+        res[0][0] = A[0][0] * B[0][0]
+        Return res
+
+    Let mid = n / 2
+    Divide A into 4 submatrices:
+        A11 = first half of rows, first half of columns
+        A12 = first half of rows, second half of columns
+        A21 = second half of rows, first half of columns
+        A22 = second half of rows, second half of columns
+
+    Divide B into 4 submatrices:
+        B11 = first half of rows, first half of columns
+        B12 = first half of rows, second half of columns
+        B21 = second half of rows, first half of columns
+        B22 = second half of rows, second half of columns
+
+    Recursively compute the following submatrices:
+        C11 = add(mult(A11, B11), mult(A12, B21))
+        C12 = add(mult(A11, B12), mult(A12, B22))
+        C21 = add(mult(A21, B11), mult(A22, B21))
+        C22 = add(mult(A21, B12), mult(A22, B22))
+
+    Combine the submatrices to form the final result matrix:
+        res[0..mid-1][0..mid-1] = C11
+        res[0..mid-1][mid..n-1] = C12
+        res[mid..n-1][0..mid-1] = C21
+        res[mid..n-1][mid..n-1] = C22
+
+    Return res
+
+Main:
+    Define matrix A and B
+    Call mult(A, B) to compute matrix C
+    Output matrix C

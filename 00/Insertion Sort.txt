@@ -1,0 +1,29 @@
+Function insertionSort(array, size):
+    For i from 1 to size - 1:
+        key ← array[i]
+        j ← i - 1
+
+        While j ≥ 0 AND array[j] > key:
+            array[j + 1] ← array[j]
+            j ← j - 1
+
+        array[j + 1] ← key
+    EndFor
+EndFunction
+
+Function printArray(array, size):
+    For i from 0 to size - 1:
+        Print array[i] followed by space
+    EndFor
+    Print newline
+EndFunction
+
+Main:
+    Declare array ← [8, 4, 5, 2, 9, 1]
+    size ← number of elements in array
+
+    Call insertionSort(array, size)
+    Call printArray(array, size)
+
+    Return 0
+EndMain

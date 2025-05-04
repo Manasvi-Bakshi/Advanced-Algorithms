@@ -1,0 +1,35 @@
+Class DSU:
+    Function init(n): Initialize parent and rank arrays of size n.
+        parent[i] = i for all i
+        rank[i] = 1 for all i
+    
+    Function find(i): 
+        If parent[i] == i, return i
+        Else, recursively find the root of parent[i] and compress the path by setting parent[i] = find(parent[i])
+
+    Function unite(x, y):
+        Find the root of x and y using find(x) and find(y)
+        If they are in the same set, return (no union is needed)
+        Else, unite the two sets by linking the root of the smaller tree to the root of the larger tree
+        Increment the rank if the ranks of the roots are equal
+
+Function kruskalsMST(V, edges):
+    Sort edges by weight in ascending order
+    
+    Create an instance of DSU with V vertices
+    
+    Initialize cost to 0 and count of edges added to MST to 0
+    
+    For each edge (u, v, w) in edges:
+        If find(u) != find(v):
+            Unite(u, v)
+            Add the weight w to cost
+            Increment the count of edges in MST
+            If count == V - 1 (MST is complete), break
+    
+    Return the total cost of the MST
+
+Main:
+    Define edges as a list of edges with (u, v, weight)
+    Call kruskalsMST with the number of vertices and the edges list
+    Print the result (cost of the MST)

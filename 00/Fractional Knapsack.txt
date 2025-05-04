@@ -1,0 +1,14 @@
+Function maxProfit(W, items[], n):
+    Sort items in decreasing order of profit/weight ratio
+
+    profit ← 0.0
+
+    For i from 0 to n - 1:
+        If items[i].weight ≤ W:
+            W ← W - items[i].weight
+            profit ← profit + items[i].profit
+        Else:
+            profit ← profit + items[i].profit * (W / items[i].weight)
+            Break
+
+    Return profit
