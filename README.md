@@ -43,4 +43,13 @@ The algorithms are organized into different folders based on their category.
 #### Folder 7 (Shortest Path)
 - Dijkstra
 - Floyd Warshall
+
+#### Folder 8 (Graph)
+- Kruskal Minimum Spanning Tree (MST)
+- Krager's Mincut
+
+#### Folder 9 (Multiplication)
+- Euclidean Multiplication
+- Strassen Multiplication
+- Vertex Cover
  
